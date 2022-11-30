@@ -1,25 +1,15 @@
 TMP="/tmp/lovestarter"
 
 if [ "$1" = "cleanDeps" ]; then
+    echo "This will delete everything in src/lib... [enter / Ctrl+C]"
+    read
     rm -r src/lib/*
     rm -r "$TMP"
     exit $?
 fi
 
-#echo Enter title [enter / Ctrl+C]
-#read TITLE
-TITLE=test
-
-#sed -i "s/{title}/$TITLE/" src/conf.lua
-
-
-
 mkdir -p "$TMP"
 mkdir -p src/lib
-
-#wget -O "$TMP/autobatch.tar.gz" "https://github.com/rxi/autobatch/archive/refs/tags/v0.1.1.tar.gz"
-#tar -x -C "$TMP" -vzf "$TMP/autobatch.tar.gz"
-#cp "$TMP/autobatch-0.1.1/autobatch.lua" src/lib
 
 function single {
     local url="$1"
@@ -44,7 +34,7 @@ single https://raw.githubusercontent.com/rxi/json.lua/11077824d7cfcd28a4b2f15251
 #single https://raw.githubusercontent.com/rxi/lovebird/e84abe7b56a65ccb3ec6288e1955b6d772d41431/lovebird.lua
 #single https://raw.githubusercontent.com/rxi/lurker/v1.0.1/lurker.lua
 #single https://raw.githubusercontent.com/rxi/lume/v2.3.0/lume.lua
-#single https://raw.githubusercontent.com/rxi/classic/e5610756c98ac2f8facd7ab90c94e1a097ecd2c6/classic.lua
+single https://raw.githubusercontent.com/rxi/classic/e5610756c98ac2f8facd7ab90c94e1a097ecd2c6/classic.lua
 single https://raw.githubusercontent.com/kikito/inspect.lua/v3.1.2/inspect.lua
 single https://raw.githubusercontent.com/premek/inspect-print.lua/v1.0.0/inspect-print.lua
 single https://raw.githubusercontent.com/premek/love-ase-pal/7598b62f30bd9f82544f9fdeda15ff1297556c34/palease.lua
