@@ -30,7 +30,6 @@
  "meta": {
   "app": "https://github.com/LibreSprite/LibreSprite/",
   "version": "1.1-dev",
-  "image": "/home/premek/prog/water/src/img/items.png",
   "format": "I8",
   "size": { "w": 48, "h": 16 },
   "scale": "1",
