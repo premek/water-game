@@ -15,11 +15,12 @@ function Player:draw()
 end
 
 function Player:update(dt)
+  -- TODO where to use dt
   self.velocity.x = math.max(0, self.velocity.x - dt * 10)
   self.velocity.y = math.max(0, self.velocity.y - dt * 10)
 
   if love.keyboard.isDown("right") then
-    self.velocity.x = math.min(2, self.velocity.x + dt * 15)
+    self.velocity.x = math.min(2, self.velocity.x + dt * 150)
   end
 
   if self.velocity.x > 0 then
