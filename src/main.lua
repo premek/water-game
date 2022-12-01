@@ -28,10 +28,17 @@ end
 
 function love.update(dt)
   player:update(dt)
-  bird:update(dt)
-  bird2:update(dt)
-  boat:update(dt)
-  d1:update(dt)
+
+  for _, o in pairs {player, bird, bird2, boat, d1} do
+    if o.position and o.velocity then
+      o.position.x = o.position.x + o.velocity.x * dt
+      o.position.y = o.position.y + o.velocity.y * dt
+    end
+
+    if o.animation then
+      o.animation:update(dt)
+    end
+  end
 end
 
 function love.draw()
@@ -45,11 +52,11 @@ function love.draw()
 
   lg.setColor(1, 1, 1)
 
-  player:draw()
-  bird:draw()
-  bird2:draw()
-  boat:draw()
-  d1:draw()
+  for _, o in pairs {player, bird, bird2, boat, d1} do
+    if o.animation and o.position then
+      o.animation:draw(o.position)
+    end
+  end
 end
 
 function love.keypressed(k)

@@ -9,16 +9,5 @@ function Debris:new(position)
   self.velocity = {x = -20, y = 0}
 end
 
-function Debris:draw()
-  self.animation:draw(self.position)
-end
-
-function Debris:update(dt)
-  self.position.x = self.position.x + self.velocity.x * dt
-  self.position.y = self.position.y + self.velocity.y * dt
-
-  self.animation:update(dt)
-end
-
 return Debris
 

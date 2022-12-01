@@ -10,10 +10,6 @@ function Player:new(position)
   self.inventory = {}
 end
 
-function Player:draw()
-  self.animation:draw(self.position)
-end
-
 function Player:update(dt)
   -- TODO where to use dt
   self.velocity.x = math.max(0, self.velocity.x - dt * 10)
@@ -28,11 +24,6 @@ function Player:update(dt)
   else
     self.animation.tag = 'idle'
   end
-
-  self.position.x = self.position.x + self.velocity.x * dt
-  self.position.y = self.position.y + self.velocity.y * dt
-
-  self.animation:update(dt)
 end
 
 return Player
