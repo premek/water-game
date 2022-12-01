@@ -1,3 +1,4 @@
+#TODO checksums
 TMP="/tmp/lovestarter"
 
 if [ "$1" = "cleanDeps" ]; then
@@ -49,5 +50,7 @@ single https://raw.githubusercontent.com/premek/love-ase-pal/7598b62f30bd9f82544
 #single https://raw.githubusercontent.com/rm-code/screenmanager/2.1.1/Screen.lua
 
 #arch "Simple-Tiled-Implementation-1.2.3.0/sti/" 1 https://github.com/karai17/Simple-Tiled-Implementation/archive/refs/tags/v1.2.3.0.tar.gz
+
+single https://raw.githubusercontent.com/kyleconroy/lua-state-machine/2.0.0/statemachine.lua
 
 echo

@@ -19,7 +19,8 @@ function Animation:getQuad()
 end
 
 function Animation:draw(position)
-  love.graphics.draw(self.spritesheet.image, self:getQuad(), position.x, position.y, 0, scale)
+  local mirror = self.mirrored and -1 or 1
+  love.graphics.draw(self.spritesheet.image, self:getQuad(), position.x, position.y, 0, scale * mirror, scale)
 end
 
 function Animation:update(dt)

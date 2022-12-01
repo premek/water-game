@@ -21,7 +21,7 @@ local bird2 = Bird({x = 500, y = 100}, {x = -5, y = 1})
 
 local boat = Boat({x = 280, y = 241})
 
-local d1 = Debris({x = 480, y = 241})
+local d1 = Debris()
 
 function love.load()
 end
@@ -37,6 +37,15 @@ function love.update(dt)
 
     if o.animation then
       o.animation:update(dt)
+    end
+
+    if o.floating then
+      o.position.y = o.position.y - dt * 40
+      if o.position.y < 180 then
+        o.position.y = -100
+
+        -- FIXME remove
+      end
     end
   end
 end
@@ -64,3 +73,12 @@ function love.keypressed(k)
     love.event.quit()
   end
 end
+
+function love.mousepressed(_x, _y, _button, _istouch, _presses)
+  player:mousepressed()
+end
+
+function love.mousereleased(_x, _y, _button, _istouch, _presses)
+  player:mousereleased()
+end
+
