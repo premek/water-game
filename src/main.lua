@@ -5,7 +5,6 @@ require 'lib.inspect-print' (inspect)
 
 lg = love.graphics
 palette = require('lib.palease').load(love.filesystem.read('img/pal1.ase'))
-waterLevel = 270
 
 -- TODO
 
@@ -18,12 +17,13 @@ local scale = 4
 
 love.graphics.setDefaultFilter("nearest")
 
-local player = Player(Vector(300, 200))
+waterLevel = 430
+local player = Player(Vector(300, 348))
 
 local bird = Bird(Vector(500, 100), Vector(10, 0))
 local bird2 = Bird(Vector(500, 120), Vector(-5, 1))
 
-local boat = Boat(Vector(280, 241))
+local boat = Boat(Vector(280, 388))
 
 local d1 = Debris()
 
@@ -58,9 +58,9 @@ function love.draw()
   lg.rectangle("fill", 0, 0, lg.getWidth(), lg.getHeight())
 
   lg.setColor(palette[9])
-  lg.circle("fill", 200, 100, 90)
+  lg.circle("fill", 200, 80, 70)
   lg.setLineWidth(scale)
-  lg.line(0, 270, lg.getWidth(), waterLevel)
+  lg.line(0, 280, lg.getWidth(), 280)
 
   lg.setColor(1, 1, 1)
 

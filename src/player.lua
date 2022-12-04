@@ -4,7 +4,7 @@ local Vector = require 'lib.vector'
 
 local Player = require("lib.classic"):extend()
 
-local toolOffset = Vector(50, 54)
+local toolOffset = Vector(46, 54)
 
 function Player:new(position)
   self.animation = Animation('char', 'idle')

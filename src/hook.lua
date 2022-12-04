@@ -1,16 +1,13 @@
 local machine = require('lib.statemachine')
 local Vector = require 'lib.vector'
+local ChargingIndicator = require 'charging_indicator'
 
 local Hook = require("lib.classic"):extend()
 
--- init speed [m/s]
+-- init speed 
 local v0 = 20
-
--- m/s^2
 local g = 9.81
-
-local cos = math.cos(math.rad(45))
-local sin = math.sin(math.rad(45))
+local magic = 10
 
 -- TODO should hook know about player?
 function Hook:new(position)
@@ -26,10 +23,9 @@ function Hook:new(position)
   self.fsm = machine.create({
     initial = 'none',
     events = {
+      -- mousedown when throwing? or must wait to land?
       {name = 'mousepressed', from = 'none', to = 'charging'},
       {name = 'mousereleased', from = 'charging', to = 'throwing'},
-
-      -- mousedown when throwing? or must wait to land?
       {name = 'land', from = 'throwing', to = 'landed'},
       {name = 'mousepressed', from = 'landed', to = 'pulling'},
       {name = 'mousereleased', from = 'pulling', to = 'landed'},
@@ -37,23 +33,15 @@ function Hook:new(position)
     }
   })
 
-  self.fsm.onstatechange = function(_selffsm, _event, _from, to)
-    --print(to, self.times)
-  end
+  --self.fsm.onstatechange = function(_selffsm, _event, _from, to)
+  --  print(to, self.times)
+  --end
 
   self.fsm.onpickup = self.pickup
 end
 
-local withDefaultValue = function(t, default)
-  return setmetatable(t, {
-    __index = function(table, key)
-      return default
-    end
-  })
-end
-
 function Hook:pickup()
-  self.times = withDefaultValue({}, 0)
+  self.times = {}
 end
 
 function Hook:getState()
@@ -61,21 +49,28 @@ function Hook:getState()
 end
 
 function Hook:updateVelocity()
-    self.velocity.x=0
-    self.velocity.y=0
+  self.velocity.x = 0
+  self.velocity.y = 0
 
   if self.fsm:is('pulling') then
     self.velocity.x = -80
 
     -- TODO both directions
   elseif self.fsm:is('throwing') then
-    self.velocity.x = v0 * cos * 6
-    self.velocity.y = - (v0 * sin - g * self.times.throwing) * 6
+    local charge = self:getCharge()
+    local angle = math.rad(45 * charge)
+    self.velocity.x = v0 * charge * math.cos(angle) * magic
+    self.velocity.y = - (v0 * charge * math.sin(angle) - g * self.times.throwing) * magic
   end
 end
 
+local maxCharge = 1.5
+function Hook:getCharge()
+  return math.min(maxCharge, self.times.charging) / maxCharge
+end
+
 function Hook:update(dt)
-  self.times[self.fsm.current] = self.times[self.fsm.current] + dt
+  self.times[self.fsm.current] = (self.times[self.fsm.current] or 0) + dt
 
   if self.position.y > waterLevel then
     self.fsm:land()
@@ -90,16 +85,34 @@ function Hook:update(dt)
   self:updateVelocity()
 end
 
+local chargeIndicatorOffset = Vector(-20, -70)
+
 function Hook:draw(position)
-  lg.setLineWidth(4)
-  lg.setColor(palette[4])
-  if self.fsm:is('charging') then
-    lg.line(position.x - 20, position.y - 70, position.x - 20 + self.times.charging * 10, position.y - 70)
+  if self.fsm.current == 'charging' then
+    ChargingIndicator.draw(self:getCharge(), position + chargeIndicatorOffset)
   end
 
-  lg.setColor(palette[9])
+  if self.fsm.current ~= 'none' and self.fsm.current ~= 'charging' then
+    lg.setLineWidth(2)
 
-  lg.line(position.x, position.y, self.position.x, self.position.y)
+    -- line
+    lg.setColor(palette[9])
+    lg.line(position.x, position.y, self.position.x, self.position.y)
+
+    -- hook end
+    lg.setColor(palette[10])
+    lg.circle("line", self.position.x + 2, self.position.y, 2.5, 6)
+    lg.line(
+      self.position.x + 3,
+      self.position.y + 1,
+      self.position.x+8,
+      self.position.y + 6,
+      self.position.x + 12,
+      self.position.y + 5,
+      self.position.x + 12,
+      self.position.y + 1
+    )
+  end
 end
 
 function Hook:mousepressed()

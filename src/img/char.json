@@ -97,21 +97,30 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
     "duration": 190
+   },
+   {
+    "filename": "char 11.ase",
+    "frame": { "x": 176, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
    }
  ],
  "meta": {
   "app": "https://github.com/LibreSprite/LibreSprite/",
   "version": "1.1-dev",
   "format": "I8",
-  "size": { "w": 176, "h": 16 },
+  "size": { "w": 192, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
    { "name": "walk", "from": 1, "to": 4, "direction": "forward" },
-   { "name": "charging", "from": 5, "to": 5, "direction": "forward" },
-   { "name": "landed", "from": 6, "to": 6, "direction": "forward" },
-   { "name": "pulling", "from": 6, "to": 9, "direction": "forward" },
-   { "name": "throwing", "from": 6, "to": 6, "direction": "forward" }
+   { "name": "charging", "from": 5, "to": 6, "direction": "forward" },
+   { "name": "landed", "from": 7, "to": 7, "direction": "forward" },
+   { "name": "pulling", "from": 7, "to": 10, "direction": "forward" },
+   { "name": "throwing", "from": 7, "to": 7, "direction": "forward" }
   ]
  }
 }
