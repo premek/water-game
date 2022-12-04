@@ -1,25 +1,29 @@
 local inspect = require 'lib.inspect'
+local Vector = require 'lib.vector'
 
 require 'lib.inspect-print' (inspect)
 
-local palette = require('lib.palease').load(love.filesystem.read('img/pal1.ase'))
+lg = love.graphics
+palette = require('lib.palease').load(love.filesystem.read('img/pal1.ase'))
+waterLevel = 270
+
+-- TODO
+
 local Player = require 'player'
 local Bird = require 'bird'
 local Boat = require 'boat'
 local Debris = require 'debris'
 
-local lg = love.graphics
-
 local scale = 4
 
 love.graphics.setDefaultFilter("nearest")
 
-local player = Player({x = 300, y = 200})
+local player = Player(Vector(300, 200))
 
-local bird = Bird({x = 500, y = 100}, {x = 10, y = 0})
-local bird2 = Bird({x = 500, y = 100}, {x = -5, y = 1})
+local bird = Bird(Vector(500, 100), Vector(10, 0))
+local bird2 = Bird(Vector(500, 120), Vector(-5, 1))
 
-local boat = Boat({x = 280, y = 241})
+local boat = Boat(Vector(280, 241))
 
 local d1 = Debris()
 
@@ -29,10 +33,9 @@ end
 function love.update(dt)
   player:update(dt)
 
-  for _, o in pairs {player, bird, bird2, boat, d1} do
+  for _, o in pairs {player, player.tool, bird, bird2, boat, d1} do
     if o.position and o.velocity then
-      o.position.x = o.position.x + o.velocity.x * dt
-      o.position.y = o.position.y + o.velocity.y * dt
+      o.position = o.position + o.velocity * dt
     end
 
     if o.animation then
@@ -57,7 +60,7 @@ function love.draw()
   lg.setColor(palette[9])
   lg.circle("fill", 200, 100, 90)
   lg.setLineWidth(scale)
-  lg.line(0, 270, lg.getWidth(), 270)
+  lg.line(0, 270, lg.getWidth(), waterLevel)
 
   lg.setColor(1, 1, 1)
 
@@ -66,6 +69,8 @@ function love.draw()
       o.animation:draw(o.position)
     end
   end
+
+  player:draw()
 end
 
 function love.keypressed(k)

@@ -41,6 +41,7 @@ single https://raw.githubusercontent.com/premek/inspect-print.lua/v1.0.0/inspect
 single https://raw.githubusercontent.com/premek/love-ase-pal/7598b62f30bd9f82544f9fdeda15ff1297556c34/palease.lua
 #single https://raw.githubusercontent.com/kikito/anim8/v2.3.1/anim8.lua
 #single https://raw.githubusercontent.com/vrld/hump/3ac246dd33501e0a1b20d0318dedba16782fb1d5/gamestate.lua
+single https://raw.githubusercontent.com/vrld/hump/0dea46b0b5c48ff4ccfe9037dbd44e28ffe76852/vector.lua
 #single https://raw.githubusercontent.com/bjornbytes/cargo/b93228f36cd85699a2e12506c961f341b2e4d4b0/cargo.lua
 #single https://raw.githubusercontent.com/premek/require.lua/v1.0.0/require.lua
 #single https://raw.githubusercontent.com/bakpakin/tiny-ecs/1.3-3/tiny.lua

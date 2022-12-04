@@ -43,17 +43,75 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
     "duration": 190
+   },
+   {
+    "filename": "char 5.ase",
+    "frame": { "x": 80, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
+   },
+   {
+    "filename": "char 6.ase",
+    "frame": { "x": 96, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
+   },
+   {
+    "filename": "char 7.ase",
+    "frame": { "x": 112, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
+   },
+   {
+    "filename": "char 8.ase",
+    "frame": { "x": 128, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
+   },
+   {
+    "filename": "char 9.ase",
+    "frame": { "x": 144, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
+   },
+   {
+    "filename": "char 10.ase",
+    "frame": { "x": 160, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 190
    }
  ],
  "meta": {
   "app": "https://github.com/LibreSprite/LibreSprite/",
   "version": "1.1-dev",
   "format": "I8",
-  "size": { "w": 80, "h": 16 },
+  "size": { "w": 176, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
-   { "name": "walk", "from": 1, "to": 4, "direction": "forward" }
+   { "name": "walk", "from": 1, "to": 4, "direction": "forward" },
+   { "name": "charging", "from": 5, "to": 5, "direction": "forward" },
+   { "name": "landed", "from": 6, "to": 6, "direction": "forward" },
+   { "name": "pulling", "from": 6, "to": 9, "direction": "forward" },
+   { "name": "throwing", "from": 6, "to": 6, "direction": "forward" }
   ]
  }
 }
